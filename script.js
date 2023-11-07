@@ -3,21 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = document.getElementById('list');
     const totalValueElement = document.getElementById('totalValue');
 
-    let productData = [];
-
     async function fetchData() {
         try {
-            const response = await axios.get('https://crudcrud.com/api/bcbbdfa86a0e472f8b563b51a3e681a5/unicorns');
-            productData = response.data;
-            displayData();
+            const response = await axios.get('https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns');
+            const productData = response.data;
+            displayData(productData);
         } catch (err) {
             console.log(err);
         }
     }
 
-    fetchData();
-
-    function displayData() {
+    function displayData(productData) {
         let totalValue = 0;
         list.innerHTML = '';
 
@@ -43,9 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function deleteProduct(userId) {
         try {
-            await axios.delete(`https://crudcrud.com/api/bcbbdfa86a0e472f8b563b51a3e681a5/unicorns/${userId}`);
-            productData = productData.filter((user) => user._id !== userId);
-            displayData();
+            await axios.delete(`https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns/${userId}`);
+            fetchData(); 
         } catch (err) {
             console.log(err);
         }
@@ -62,11 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await axios.post("https://crudcrud.com/api/bcbbdfa86a0e472f8b563b51a3e681a5/unicorns", formData);
-            productData.push(formData);
-            displayData();
+            await axios.post("https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns", formData);
+            fetchData(); 
         } catch (err) {
             console.log(err);
         }
+
+        document.getElementById('price').value = '';
+        document.getElementById('product').value = '';
     });
+
+    fetchData(); 
 });
