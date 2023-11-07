@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>  
 <body>
     <form id="my-form">
@@ -15,11 +16,13 @@
             <label for="name">Product Name:-</label>
             <input type="text" name="product" id="product">
         </div>
-        <button>Add Product</button>
+        <button id="add-btn">Add Product</button>
     </form>
 
-    <h1>Products</h1>
-    <ul id="list"></ul>
+    <div id="product-div">
+        <h1>Products</h1>
+        <ul id="list"></ul>
+    </div>
 
     <h1>Total value worth of Products: <span id="totalValue">0</span></h1>
     

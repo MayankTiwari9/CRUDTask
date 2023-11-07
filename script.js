@@ -19,12 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         productData.forEach((element, index) => {
             let listItem = document.createElement('li');
+            listItem.className = 'list-ele';
             listItem.textContent = element.price + '-' + element.name;
 
             totalValue += parseFloat(element.price);
 
             let delBtn = document.createElement('button');
             delBtn.textContent = 'Delete';
+            delBtn.className = 'delete-btn';
             delBtn.type = 'button';
             delBtn.addEventListener('click', () => {
                 deleteProduct(element._id);
