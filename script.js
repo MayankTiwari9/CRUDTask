@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchData() {
         try {
-            const response = await axios.get('https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns');
+            const response = await axios.get('https://crudcrud.com/api/59b3d481ae4848faa8d7a7cbf871a145/unicorns');
             const productData = response.data;
             displayData(productData);
         } catch (err) {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function deleteProduct(userId) {
         try {
-            await axios.delete(`https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns/${userId}`);
+            await axios.delete(`https://crudcrud.com/api/59b3d481ae4848faa8d7a7cbf871a145/unicorns/${userId}`);
             fetchData(); 
         } catch (err) {
             console.log(err);
@@ -53,13 +53,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const price = document.getElementById('price').value;
         const name = document.getElementById('product').value;
 
+        if (!price && !name) {
+            alert("Price and name should not be empty");
+            return;
+        } else if (!price) {
+            alert("Price should not be empty");
+            return;
+        } else if (!name) {
+            alert("Name should not be empty");
+            return;
+        }
+
         const formData = {
             price: price,
             name: name
         };
 
         try {
-            await axios.post("https://crudcrud.com/api/6c1078e51ec54fb2bcc3225bc4482066/unicorns", formData);
+            await axios.post("https://crudcrud.com/api/59b3d481ae4848faa8d7a7cbf871a145/unicorns", formData);
             fetchData(); 
         } catch (err) {
             console.log(err);
